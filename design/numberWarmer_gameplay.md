@@ -52,10 +52,19 @@
 ## GAMEPLAY landing page
 - this is the heart of the game
 ### This loop is basically the same for either VS HUMAN, or VS AI games.  The only real difference is in handling the API calls, sending state to the AI and receiving it back.  This is beyond the scope of this document for now.
-- one thing need to figure out - how to select starting player?  (ie. who gets to make the first guess?)
-  - is should be explicit - maybe that center div that holds the list of guesses could also serve as a generic messaging area?  it could allow the players to either select who goes first, or have a button to randomly select who goes first?
-  - or should that functionality be in the LOBBY?  Not really, because if the player's play a 2nd game (ie. NEW GAME) then they would not leave the lobby, and there wouldn't be a way to select the starting player?
-  - I do not want to introduce another screen for that.  What do do?
+
+### The Center Display Box (multi-mode message area)
+- The large center div on the GAMEPLAY screen serves double duty.
+- Its **default mode** is the guess history table (Player, Turn, Guess, WARMER/COLDER).
+- But it can be **blanked and switched** to display other content as needed:
+  1. **guess-history** (default) — the scrollable table of all guesses and results
+  2. **first-turn** — a coin flip / die roll to decide who guesses first. This solves the "who goes first" question without adding another screen. Shown at the start of each game (including NEW GAME).
+  3. **ai-thinking** — when playing an AI opponent, this can show a summary of the AI's reasoning or "thinking" between turns. Adds fun banter to a single-player experience.
+  4. **celebration** — victory message when someone guesses the mystery number.
+  5. **help / info** — could display rules or help text if needed.
+- Switching modes is simple: swap the div's contents and CSS class.
+- Modes are added incrementally — start with guess-history, add others over time.
+- The first-turn mode replaces the need for a separate screen or lobby option to select the starting player. After the coin flip, the box transitions to guess-history mode.
 - Game loop is pretty simple:
   1. COMPUTER redisplays current status
   2. player enters new guess (ie. '47') and either hits ENTER, or clicks 'Guess' button
