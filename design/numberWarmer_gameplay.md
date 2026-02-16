@@ -78,3 +78,7 @@
   5. CLIENT packages the current state up and sends it back to the COMPUTER.
   6. COMPUTER evaluates and updates state, changes current player, and sends the new state to CLIENT(s).
   7. if either player clicks Back To LOBBY button then that is sent to the COMPUTER, who processes it, resets the state to a brand new game, and sends that new state to CLIENT(s).
+  
+
+### GAME STATE
+- this is used in the localStorage to transfer info between
